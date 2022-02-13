@@ -23,14 +23,21 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
   const [categoria, setCategoria] = useState('');
   const [type, setType] = useState('entrada');
 
-  function handleCreateNewTransaction(event: FormEvent){
+  async function handleCreateNewTransaction(event: FormEvent){
     event.preventDefault();
-    createTransaction({
+    await createTransaction({
       title,
       valor,
       categoria,
       type
     })
+    
+    setTitle('');
+    setValor(0);
+    setCategoria('');
+    setType('entrada');
+
+    onRequestClose();
   }
 
   return(
